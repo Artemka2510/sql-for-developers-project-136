@@ -8,7 +8,7 @@ create table Lessons (
   update_data date,
   link_on_course varchar(100),
   deleted boolean
-)
+);
 
 create table Courses (
   id  SERIAL PRIMARY KEY,
@@ -16,7 +16,7 @@ create table Courses (
   course_description varchar(50),
   create_date date,
   update_date date
-)
+);
 
 create table Modules (
   id  SERIAL PRIMARY KEY,
@@ -24,7 +24,7 @@ create table Modules (
   modul_description varchar(50),
   create_date date,
   update_date date
-)
+);
 
 create table Programs (
   id  SERIAL PRIMARY KEY,
@@ -33,5 +33,4 @@ create table Programs (
   program_type varchar(50),
   create_date date,
   update_date date
-  
-)
+);
