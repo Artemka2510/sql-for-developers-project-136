@@ -49,7 +49,7 @@ create table Users (
   user_email varchar(100),
   user_role varchar(50),
   user_passwaord varchar(10000),
-  foreign key (link_on_group) references TeachingGroups(id),
+  link_on_group varchar(100),
   created_at date,
   updated_at date
 );
