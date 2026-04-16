@@ -56,3 +56,33 @@ create table Users (
 );
 ALTER TABLE Users
 ADD FOREIGN KEY(teaching_group_id) REFERENCES TeachingGroups(Id);
+
+create table Enrollments (
+  id SERIAL PRIMARY KEY,
+  user_id int,
+  program_id int,
+  status varchar(30),
+  created_at date,
+  updated_at date,
+);
+
+create table Payments (
+  id SERIAL PRIMARY KEY,
+  user_id int,
+  program_id int,
+  status varchar(30),
+  created_at date,
+  updated_at date,
+  paid_at date,
+);
+
+create table ProgramCompletions (
+  id SERIAL PRIMARY KEY,
+  user_id int,
+  program_id int,
+  status varchar(30),
+  created_at date,
+  updated_at date,
+  started_at date,
+  completed_at date
+);
