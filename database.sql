@@ -1,44 +1,46 @@
 create table Lessons (
   id  SERIAL PRIMARY KEY,
-  lesson_name varchar(50),
-  lesson_content varchar(50),
-  link_on_video varchar(50),
+  name varchar(50),
+  content varchar(50),
+  video_url varchar(50),
   position int not null,
-  create_data date,
-  update_data date,
-  link_on_course varchar(100),
-  deleted boolean
+  created_at date,
+  updated_at date,
+  course_id varchar(100),
+  deleted_at date
 );
 
 create table Courses (
   id  SERIAL PRIMARY KEY,
-  course_name varchar(50),
-  course_description varchar(50),
-  create_date date,
-  update_date date
+  name varchar(50),
+  description varchar(50),
+  created_at date,
+  updated_at date,
+  deleted_at date  
 );
 
 create table Modules (
   id  SERIAL PRIMARY KEY,
-  modul_name varchar(50),
-  modul_description varchar(50),
-  create_date date,
-  update_date date
+  name varchar(50),
+  description varchar(50),
+  created_at date,
+  updated_at date,
+  deleted_at date
 );
 
 create table Programs (
   id  SERIAL PRIMARY KEY,
-  program_name varchar(50),
-  program_cost int,
+  name varchar(50),
+  price int,
   program_type varchar(50),
-  create_date date,
-  update_date date
+  created_at date,
+  updated_at date
 );
 create table TeachingGroups (
   id  SERIAL PRIMARY KEY,
   group_slag varchar(100),
-  create_date date,
-  update_date date
+  created_at date,
+  updated_at date
 );
 
 create table Users (
@@ -48,7 +50,7 @@ create table Users (
   user_role varchar(50),
   user_passwaord varchar(10000),
   foreign key (link_on_group) references TeachingGroups(id),
-  create_date date,
-  update_date date
+  created_at date,
+  updated_at date
 );
 
