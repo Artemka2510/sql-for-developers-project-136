@@ -54,4 +54,5 @@ create table Users (
   updated_at date,
   deleted_at date
 );
-
+ALTER TABLE Users
+ADD FOREIGN KEY(teaching_group_id) REFERENCES TeachingGroups(Id);
