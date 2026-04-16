@@ -34,3 +34,21 @@ create table Programs (
   create_date date,
   update_date date
 );
+create table TeachingGroups (
+  id  SERIAL PRIMARY KEY,
+  group_slag varchar(100),
+  create_date date,
+  update_date date
+);
+
+create table Users (
+  id  SERIAL PRIMARY KEY,
+  user_name varchar(100),
+  user_email varchar(100),
+  user_role varchar(50),
+  user_passwaord varchar(10000),
+  foreign key (link_on_group) references TeachingGroups(id),
+  create_date date,
+  update_date date
+);
+
