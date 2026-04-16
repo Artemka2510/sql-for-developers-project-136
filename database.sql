@@ -6,7 +6,7 @@ create table Lessons (
   position int not null,
   create_data date,
   update_data date,
-  link_on_course not null,
+  link_on_course varchar(100),
   deleted boolean
 )
 
