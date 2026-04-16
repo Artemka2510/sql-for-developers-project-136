@@ -45,12 +45,13 @@ create table TeachingGroups (
 
 create table Users (
   id  SERIAL PRIMARY KEY,
-  user_name varchar(100),
-  user_email varchar(100),
-  user_role varchar(50),
-  user_passwaord varchar(10000),
-  link_on_group varchar(100),
+  name varchar(100),
+  email varchar(100),
+  role varchar(50),
+  password_hash varchar(10000),
+  teaching_group_id varchar(100),
   created_at date,
-  updated_at date
+  updated_at date,
+  deleted_at date
 );
 
