@@ -49,7 +49,7 @@ create table Users (
   email varchar(100),
   role varchar(50),
   password_hash varchar(10000),
-  teaching_group_id varchar(100),
+  teaching_group_id int,
   created_at date,
   updated_at date,
   deleted_at date
