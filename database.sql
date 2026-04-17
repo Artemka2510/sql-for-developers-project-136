@@ -165,3 +165,16 @@ create table Blogs (
   updated_at date,
   user_id int
 );
+ALTER TABLE lessons 
+ALTER COLUMN position SET DEFAULT 0;
+
+-- 2. course_modules
+DROP TABLE IF EXISTS module_courses;
+CREATE TABLE course_modules (
+  course_id  INT NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
+  module_id  INT NOT NULL REFERENCES modules(id) ON DELETE CASCADE,
+  position   INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (course_id, module_id),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
