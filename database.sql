@@ -65,7 +65,7 @@ CREATE INDEX idx_module_courses_module_id ON course_modules(module_id);
 CREATE INDEX idx_module_courses_course_id ON course_modules(course_id);
 CREATE INDEX idx_program_modules_program_id ON program_modules(program_id);
 CREATE INDEX idx_program_modules_module_id ON program_modules(module_id);
-create table TeachingGroups (
+create table teaching_groups  (
   id  SERIAL PRIMARY KEY,
   group_slag varchar(100),
   created_at date,
@@ -156,7 +156,7 @@ create table Discussions (
   updated_at date
 );
 
-create table Blog (
+create table Blogs (
   id SERIAL PRIMARY KEY,
   title varchar(100),
   text varchar(100),
