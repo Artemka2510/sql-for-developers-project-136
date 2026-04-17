@@ -1,47 +1,102 @@
-create table Lessons (
-  id  SERIAL PRIMARY KEY,
-  name varchar(50),
-  content varchar(50),
-  video_url varchar(50),
-  position int not null,
-  created_at date,
-  updated_at date,
-  course_id varchar(100),
-  deleted_at date
+-- database.sql
+
+-- Таблица courses (курсы)
+CREATE TABLE courses (
+  id            SERIAL PRIMARY KEY,
+  name          VARCHAR(100) NOT NULL,
+  description   VARCHAR(500),
+  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  deleted_at    TIMESTAMP WITH TIME ZONE
 );
 
-create table Courses (
-  id  SERIAL PRIMARY KEY,
-  name varchar(50),
-  description varchar(50),
-  created_at date,
-  updated_at date,
-  deleted_at date  
+-- Таблица lessons (уроки)
+CREATE TABLE lessons (
+  id            SERIAL PRIMARY KEY,
+  name          VARCHAR(100) NOT NULL,
+  content       TEXT,
+  video_url     VARCHAR(500),
+  position      INT NOT NULL,
+  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  deleted_at    TIMESTAMP WITH TIME ZONE
 );
 
-create table Modules (
-  id  SERIAL PRIMARY KEY,
-  name varchar(50),
-  description varchar(50),
-  created_at date,
-  updated_at date,
-  deleted_at date
+-- Связь: урок относится к одному курсу
+ALTER TABLE lessons
+ADD COLUMN course_id INT
+  REFERENCES courses(id)
+  ON DELETE RESTRICT
+  ON UPDATE CASCADE;
+
+-- Таблица modules (модули)
+CREATE TABLE modules (
+  id            SERIAL PRIMARY KEY,
+  name          VARCHAR(100) NOT NULL,
+  description   VARCHAR(1000),
+  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  deleted_at    TIMESTAMP WITH TIME ZONE
 );
 
-create table Programs (
-  id  SERIAL PRIMARY KEY,
-  name varchar(50),
-  price int,
-  program_type varchar(50),
-  created_at date,
-  updated_at date
+-- Таблица programs (программы)
+CREATE TABLE programs (
+  id            SERIAL PRIMARY KEY,
+  name          VARCHAR(100) NOT NULL,
+  price         INT, -- или NUMERIC(10,2) при наличии копеек
+  program_type  VARCHAR(50),
+  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  deleted_at    TIMESTAMP WITH TIME ZONE
 );
+
+-- Many-to-many: modules → courses (модуль состоит из нескольких курсов)
+CREATE TABLE module_courses (
+  module_id     INT NOT NULL,
+  course_id     INT NOT NULL,
+  position      INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (module_id, course_id),
+  FOREIGN KEY (module_id)
+    REFERENCES modules(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (course_id)
+    REFERENCES courses(id)
+    ON DELETE CASCADE,
+  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
+-- Many-to-many: programs → modules (программа состоит из нескольких модулей)
+CREATE TABLE program_modules (
+  program_id    INT NOT NULL,
+  module_id     INT NOT NULL,
+  position      INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (program_id, module_id),
+  FOREIGN KEY (program_id)
+    REFERENCES programs(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (module_id)
+    REFERENCES modules(id)
+    ON DELETE CASCADE,
+  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
+-- Индекс для ускорения связей
+CREATE INDEX idx_lessons_course_id ON lessons(course_id);
+CREATE INDEX idx_module_courses_module_id ON module_courses(module_id);
+CREATE INDEX idx_module_courses_course_id ON module_courses(course_id);
+CREATE INDEX idx_program_modules_program_id ON program_modules(program_id);
+CREATE INDEX idx_program_modules_module_id ON program_modules(module_id);
 create table TeachingGroups (
   id  SERIAL PRIMARY KEY,
   group_slag varchar(100),
   created_at date,
   updated_at date
 );
+
+
+
 
 create table Users (
   id  SERIAL PRIMARY KEY,
@@ -132,3 +187,4 @@ create table Blog (
   created_at date,
   updated_at date
 );
+вот исправь мой код
