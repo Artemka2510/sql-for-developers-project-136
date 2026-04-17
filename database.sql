@@ -112,13 +112,11 @@ create table Payments (
 
 create table program_completions (
   id SERIAL PRIMARY KEY,
-  user_id int,
-  program_id int,
+  user_id int REFERENCES Users(id) ON DELETE CASCADE,
+  program_id int REFERENCES programs(id) ON DELETE CASCADE,
   status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired', 'active')),
   created_at date,
   updated_at date,
-  started_at date DEFAULT NULL,
-  completed_at date DEFAULT NULL,
   UNIQUE(user_id, program_id)
 );
 
