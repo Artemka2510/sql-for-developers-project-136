@@ -73,7 +73,7 @@ create table Payments (
   status varchar(30),
   created_at date,
   updated_at date,
-  paid_at date,
+  paid_at date
 );
 
 create table ProgramCompletions (
