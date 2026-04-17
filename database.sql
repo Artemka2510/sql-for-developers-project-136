@@ -169,7 +169,6 @@ create table Discussions (
 
 create table Blog (
   id SERIAL PRIMARY KEY,
-  user_id int,
   title varchar(100),
   text varchar(100),
   status varchar(100),
