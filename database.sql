@@ -187,4 +187,3 @@ create table Blog (
   created_at date,
   updated_at date
 );
-вот исправь мой код
