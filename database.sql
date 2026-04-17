@@ -46,8 +46,7 @@ CREATE TABLE programs (
   price         INT, -- или NUMERIC(10,2) при наличии копеек
   program_type  VARCHAR(50),
   created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-  deleted_at    TIMESTAMP WITH TIME ZONE
+  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
 -- Many-to-many: modules → courses (модуль состоит из нескольких курсов)
@@ -69,17 +68,7 @@ CREATE TABLE module_courses (
 -- Many-to-many: programs → modules (программа состоит из нескольких модулей)
 CREATE TABLE program_modules (
   program_id    INT NOT NULL,
-  module_id     INT NOT NULL,
-  position      INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (program_id, module_id),
-  FOREIGN KEY (program_id)
-    REFERENCES programs(id)
-    ON DELETE CASCADE,
-  FOREIGN KEY (module_id)
-    REFERENCES modules(id)
-    ON DELETE CASCADE,
-  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+  module_id     INT NOT NULL
 );
 
 -- Индекс для ускорения связей
