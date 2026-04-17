@@ -67,7 +67,7 @@ CREATE INDEX idx_program_modules_program_id ON program_modules(program_id);
 CREATE INDEX idx_program_modules_module_id ON program_modules(module_id);
 create table teaching_groups  (
   id  SERIAL PRIMARY KEY,
-  slag varchar(100),
+  slug varchar(100),
   created_at date,
   updated_at date
 );
@@ -108,7 +108,7 @@ create table Payments (
   paid_at date
 );
 
-create table ProgramCompletions (
+create table program_completions (
   id SERIAL PRIMARY KEY,
   user_id int,
   program_id int,
