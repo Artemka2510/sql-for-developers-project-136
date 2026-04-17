@@ -87,7 +87,7 @@ create table Users (
   deleted_at date
 );
 ALTER TABLE Users
-ADD FOREIGN KEY(teaching_group_id) REFERENCES TeachingGroups(Id);
+ADD FOREIGN KEY(teaching_group_id) REFERENCES teaching_groups(Id);
 
 create table Enrollments (
   id SERIAL PRIMARY KEY,
