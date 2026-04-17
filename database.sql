@@ -162,6 +162,7 @@ create table Exercises (
 create table Discussions (
   id SERIAL PRIMARY KEY,
   lesson_id int,
+  user_id int,
   text varchar(100),
   created_at date,
   updated_at date
