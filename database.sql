@@ -50,7 +50,7 @@ CREATE TABLE programs (
 );
 
 -- Many-to-many: modules → courses (модуль состоит из нескольких курсов)
-CREATE TABLE module_courses (
+CREATE TABLE course_modules  (
   module_id     INT NOT NULL,
   course_id     INT NOT NULL,
   position      INT NOT NULL DEFAULT 0,
