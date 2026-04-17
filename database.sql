@@ -102,7 +102,7 @@ create table Enrollments (
 
 create table Payments (
   id SERIAL PRIMARY KEY,
-  enrollment_id int,
+   enrollment_id INT REFERENCES enrollments(id),
   amount int,
   status varchar(30),
   created_at date,
