@@ -118,7 +118,8 @@ create table program_completions (
   created_at date,
   updated_at date,
   started_at date,
-  completed_at date
+  completed_at date,
+  UNIQUE(user_id, program_id)
 );
 
 create table Certificates (
