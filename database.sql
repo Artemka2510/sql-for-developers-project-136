@@ -114,7 +114,7 @@ create table program_completions (
   id SERIAL PRIMARY KEY,
   user_id int,
   program_id int,
-  status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired')),
+  status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired', 'active')),
   created_at date,
   updated_at date,
   started_at date,
