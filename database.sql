@@ -117,8 +117,8 @@ create table program_completions (
   status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired', 'active')),
   created_at date,
   updated_at date,
-  started_at date,
-  completed_at date,
+  started_at date DEFAULT NULL,
+  completed_at date DEFAULT NULL,
   UNIQUE(user_id, program_id)
 );
 
