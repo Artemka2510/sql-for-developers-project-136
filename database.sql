@@ -48,15 +48,17 @@ CREATE TABLE programs (
 );
 
 
-CREATE TABLE course_modules  (
-  module_id     INT NOT NULL,
-  course_id     INT NOT NULL
+CREATE TABLE course_modules (
+  course_id  INT NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
+  module_id  INT NOT NULL REFERENCES modules(id) ON DELETE CASCADE,
+  PRIMARY KEY (course_id, module_id)
 );
 
 
 CREATE TABLE program_modules (
-  program_id    INT NOT NULL,
-  module_id     INT NOT NULL
+  program_id INT NOT NULL REFERENCES programs(id) ON DELETE CASCADE,
+  module_id  INT NOT NULL REFERENCES modules(id) ON DELETE CASCADE,
+  PRIMARY KEY (program_id, module_id)
 );
 
 -- Индекс для ускорения связей
