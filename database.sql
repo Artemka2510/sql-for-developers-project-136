@@ -68,8 +68,8 @@ create table Enrollments (
 
 create table Payments (
   id SERIAL PRIMARY KEY,
-  user_id int,
-  program_id int,
+  enrollment_id int,
+  amount int,
   status varchar(30),
   created_at date,
   updated_at date,
@@ -85,4 +85,32 @@ create table ProgramCompletions (
   updated_at date,
   started_at date,
   completed_at date
+);
+
+create table Certificates (
+  id SERIAL PRIMARY KEY,
+  user_id int,
+  program_id int,
+  url varchar(100),
+  created_at date,
+  updated_at date,
+  issued_at date
+);
+
+create table Quizzes (
+  id SERIAL PRIMARY KEY,
+  lesson_id int,
+  name varchar(100),
+  content varchar(100),
+  created_at date,
+  updated_at date
+);
+
+create table Exercises (
+  id SERIAL PRIMARY KEY,
+  lesson_id int,
+  name varchar(100),
+  url varchar(100),
+  created_at date,
+  updated_at date
 );
