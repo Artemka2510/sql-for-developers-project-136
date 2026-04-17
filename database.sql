@@ -63,7 +63,7 @@ create table Enrollments (
   program_id int,
   status varchar(30),
   created_at date,
-  updated_at date,
+  updated_at date
 );
 
 create table Payments (
