@@ -50,7 +50,7 @@ CREATE TABLE programs (
 
 CREATE TABLE course_modules  (
   module_id     INT NOT NULL,
-  course_id     INT NOT NULL,
+  course_id     INT NOT NULL
 );
 
 
