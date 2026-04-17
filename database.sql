@@ -1,6 +1,4 @@
--- database.sql
 
--- Таблица courses (курсы)
 CREATE TABLE courses (
   id            SERIAL PRIMARY KEY,
   name          VARCHAR(100) NOT NULL,
@@ -10,7 +8,7 @@ CREATE TABLE courses (
   deleted_at    TIMESTAMP WITH TIME ZONE
 );
 
--- Таблица lessons (уроки)
+
 CREATE TABLE lessons (
   id            SERIAL PRIMARY KEY,
   name          VARCHAR(100) NOT NULL,
@@ -22,14 +20,14 @@ CREATE TABLE lessons (
   deleted_at    TIMESTAMP WITH TIME ZONE
 );
 
--- Связь: урок относится к одному курсу
+
 ALTER TABLE lessons
 ADD COLUMN course_id INT
   REFERENCES courses(id)
   ON DELETE RESTRICT
   ON UPDATE CASCADE;
 
--- Таблица modules (модули)
+
 CREATE TABLE modules (
   id            SERIAL PRIMARY KEY,
   name          VARCHAR(100) NOT NULL,
@@ -39,17 +37,17 @@ CREATE TABLE modules (
   deleted_at    TIMESTAMP WITH TIME ZONE
 );
 
--- Таблица programs (программы)
+
 CREATE TABLE programs (
   id            SERIAL PRIMARY KEY,
   name          VARCHAR(100) NOT NULL,
-  price         INT, -- или NUMERIC(10,2) при наличии копеек
+  price         INT, 
   program_type  VARCHAR(50),
   created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
   updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
--- Many-to-many: modules → courses (модуль состоит из нескольких курсов)
+
 CREATE TABLE course_modules  (
   module_id     INT NOT NULL,
   course_id     INT NOT NULL,
@@ -65,7 +63,7 @@ CREATE TABLE course_modules  (
   updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
--- Many-to-many: programs → modules (программа состоит из нескольких модулей)
+
 CREATE TABLE program_modules (
   program_id    INT NOT NULL,
   module_id     INT NOT NULL
@@ -73,8 +71,8 @@ CREATE TABLE program_modules (
 
 -- Индекс для ускорения связей
 CREATE INDEX idx_lessons_course_id ON lessons(course_id);
-CREATE INDEX idx_module_courses_module_id ON module_courses(module_id);
-CREATE INDEX idx_module_courses_course_id ON module_courses(course_id);
+CREATE INDEX idx_module_courses_module_id ON course_modules(module_id);
+CREATE INDEX idx_module_courses_course_id ON course_modules(course_id);
 CREATE INDEX idx_program_modules_program_id ON program_modules(program_id);
 CREATE INDEX idx_program_modules_module_id ON program_modules(module_id);
 create table TeachingGroups (
