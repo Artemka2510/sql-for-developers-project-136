@@ -51,16 +51,6 @@ CREATE TABLE programs (
 CREATE TABLE course_modules  (
   module_id     INT NOT NULL,
   course_id     INT NOT NULL,
-  position      INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (module_id, course_id),
-  FOREIGN KEY (module_id)
-    REFERENCES modules(id)
-    ON DELETE CASCADE,
-  FOREIGN KEY (course_id)
-    REFERENCES courses(id)
-    ON DELETE CASCADE,
-  created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-  updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
 
