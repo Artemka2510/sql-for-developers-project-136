@@ -114,3 +114,21 @@ create table Exercises (
   created_at date,
   updated_at date
 );
+
+create table Discussions (
+  id SERIAL PRIMARY KEY,
+  lesson_id int,
+  text varchar(100),
+  created_at date,
+  updated_at date
+);
+
+create table Blog (
+  id SERIAL PRIMARY KEY,
+  user_id int,
+  title varchar(100),
+  text varchar(100),
+  status varchar(100),
+  created_at date,
+  updated_at date
+);
