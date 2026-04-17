@@ -95,16 +95,16 @@ create table Enrollments (
   id SERIAL PRIMARY KEY,
   user_id int,
   program_id int,
-  status varchar(30),
+  status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired')),
   created_at date,
   updated_at date
 );
 
 create table Payments (
   id SERIAL PRIMARY KEY,
-   enrollment_id INT REFERENCES enrollments(id),
+  enrollment_id INT REFERENCES enrollments(id) NOT NULL,
   amount int,
-  status varchar(30),
+  status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired')),
   created_at date,
   updated_at date,
   paid_at date
@@ -114,7 +114,7 @@ create table program_completions (
   id SERIAL PRIMARY KEY,
   user_id int,
   program_id int,
-  status varchar(30),
+  status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired')),
   created_at date,
   updated_at date,
   started_at date,
