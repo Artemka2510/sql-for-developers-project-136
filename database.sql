@@ -1,4 +1,3 @@
-
 CREATE TABLE courses (
   id            SERIAL PRIMARY KEY,
   name          VARCHAR(100) NOT NULL,
@@ -112,13 +111,13 @@ create table Payments (
 
 create table program_completions (
   id SERIAL PRIMARY KEY,
-  user_id int REFERENCES Users(id) ON DELETE CASCADE,
-  program_id int REFERENCES programs(id) ON DELETE CASCADE,
+  user_id int,
+  program_id int,
   status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired', 'active')),
   created_at date,
   updated_at date,
-  started_at date DEFAULT NULL,
-  completed_at date DEFAULT NULL,
+  started_at date,
+  completed_at date,
   UNIQUE(user_id, program_id)
 );
 
@@ -170,4 +169,3 @@ create table Blogs (
 );
 ALTER TABLE lessons 
 ALTER COLUMN position SET DEFAULT 0;
-
