@@ -94,7 +94,7 @@ create table Enrollments (
   id SERIAL PRIMARY KEY,
   user_id int,
   program_id int,
-  status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired', 'active')),
+  status varchar(30) CHECK (status IN ('pending', 'paid', 'cancelled', 'expired', 'active', 'invalid status')),
   created_at date,
   updated_at date
 );
